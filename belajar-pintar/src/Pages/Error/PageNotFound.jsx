@@ -1,0 +1,3 @@
+import { Link } from "react-router-dom";
+const PageNotFound = () => { return <div className="min-h-screen bg-gray-100 flex flex-col justify-center items-center px-4 text-center"><h1 className="text-6xl font-bold text-blue-600 mb-4">404</h1><h2 className="text-2xl font-semibold text-gray-800 mb-2">Halaman Tidak Ditemukan</h2><Link to="/" className="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Kembali ke Login</Link></div>; };
+export default PageNotFound;
