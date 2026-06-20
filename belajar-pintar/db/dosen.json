@@ -1,0 +1,5 @@
+[
+  { "id": 1, "nidn": "0612078801", "nama": "Dr. Ahmad Fauzi, M.Kom", "email": "ahmad@dosen.com", "telp": "081234567890", "alamat": "Jl. Merdeka No. 10, Semarang" },
+  { "id": 2, "nidn": "0612078802", "nama": "Dr. Siti Rahmawati, M.T", "email": "siti@dosen.com", "telp": "081234567891", "alamat": "Jl. Diponegoro No. 25, Semarang" },
+  { "id": 3, "nidn": "0612078803", "nama": "Budi Hartono, S.Kom, M.Kom", "email": "budi@dosen.com", "telp": "081234567892", "alamat": "Jl. Pandanaran No. 5, Semarang" }
+]

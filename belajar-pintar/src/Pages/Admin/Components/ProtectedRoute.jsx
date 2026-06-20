@@ -1,3 +1,4 @@
 import { Navigate } from "react-router-dom";
-const ProtectedRoute = ({ children }) => { const user = localStorage.getItem("user"); if (!user) return <Navigate to="/" replace />; return children; };
+import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
+const ProtectedRoute = ({ children }) => { const { user } = useAuthStateContext(); if (!user) return <Navigate to="/" replace />; return children; };
 export default ProtectedRoute;

@@ -1,0 +1,5 @@
+[
+  { "id": 1, "kode": "IF101", "nama": "Pemrograman Web", "sks": 3, "dosen": "Dr. Ahmad Fauzi, M.Kom", "semester": 4 },
+  { "id": 2, "kode": "IF102", "nama": "Basis Data", "sks": 3, "dosen": "Dr. Siti Rahmawati, M.T", "semester": 4 },
+  { "id": 3, "kode": "IF103", "nama": "Struktur Data", "sks": 4, "dosen": "Budi Hartono, S.Kom, M.Kom", "semester": 4 }
+]
