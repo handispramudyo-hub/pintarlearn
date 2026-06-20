@@ -2,8 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { Navigate, createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { AuthProvider } from "./Utils/Contexts/AuthContext";
 import "./App.css";
+
+const queryClient = new QueryClient();
 
 import AuthLayout from "./Pages/Auth/AuthLayout";
 import AdminLayout from "./Pages/Admin/AdminLayout";
@@ -12,6 +15,7 @@ import Login from "./Pages/Auth/Login/Login";
 import Register from "./Pages/Auth/Register/Register";
 import Dashboard from "./Pages/Admin/Dashboard/Dashboard";
 import Kelas from "./Pages/Admin/Kelas/Kelas";
+import KelasManagement from "./Pages/Admin/KelasManagement/KelasManagement";
 import Dosen from "./Pages/Admin/Dosen/Dosen";
 import Matakuliah from "./Pages/Admin/Matakuliah/Matakuliah";
 import User from "./Pages/Admin/User/User";
@@ -24,6 +28,7 @@ const router = createBrowserRouter([
     { index: true, element: <Navigate to="dashboard" replace /> },
     { path: "dashboard", element: <Dashboard /> },
     { path: "kelas", element: <Kelas /> },
+    { path: "kelola-kelas", element: <KelasManagement /> },
     { path: "dosen", element: <Dosen /> },
     { path: "matakuliah", element: <Matakuliah /> },
     { path: "user", element: <User /> },
@@ -33,9 +38,11 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <AuthProvider>
-      <Toaster position="top-right" />
-      <RouterProvider router={router} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Toaster position="top-right" />
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </QueryClientProvider>
   </React.StrictMode>
 );

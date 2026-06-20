@@ -12,6 +12,7 @@ const Sidebar = () => {
         {p("kelas.page") && <NavLink to="/admin/kelas" className={linkClass}><span className="text-lg">📖</span><span className="hidden lg:inline">Kelas</span></NavLink>}
         {p("dosen.page") && <NavLink to="/admin/dosen" className={linkClass}><span className="text-lg">👨‍🏫</span><span className="hidden lg:inline">Dosen</span></NavLink>}
         {p("matakuliah.page") && <NavLink to="/admin/matakuliah" className={linkClass}><span className="text-lg">📚</span><span className="hidden lg:inline">Matakuliah</span></NavLink>}
+        {p("kelola-kelas.page") && <NavLink to="/admin/kelola-kelas" className={linkClass}><span className="text-lg">🏫</span><span className="hidden lg:inline">Kelola Kelas</span></NavLink>}
         {p("user.page") && <NavLink to="/admin/user" className={linkClass}><span className="text-lg">👥</span><span className="hidden lg:inline">User</span></NavLink>}
       </nav>
     </aside>

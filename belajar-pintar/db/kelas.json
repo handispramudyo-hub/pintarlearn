@@ -1,0 +1,4 @@
+[
+  { "id": 1, "matakuliah_id": 1, "dosen_id": 1, "mahasiswa_ids": [2, 3, 4] },
+  { "id": 2, "matakuliah_id": 2, "dosen_id": 2, "mahasiswa_ids": [2, 5, 6] }
+]

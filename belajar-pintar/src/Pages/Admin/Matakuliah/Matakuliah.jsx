@@ -1,43 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
 import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { getAllMatakuliah, storeMatakuliah, updateMatakuliah, deleteMatakuliah } from "../../../Utils/Apis/MatakuliahApi";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { useMatakuliah, useStoreMatakuliah, useUpdateMatakuliah, useDeleteMatakuliah } from "../../../utils/Hooks/useMatakuliah";
+
+const initialState = { kode: "", nama: "", sks: "", dosen: "", semester: "" };
 
 const Matakuliah = () => {
   const { user } = useAuthStateContext();
   const p = (perm) => user?.permission?.includes(perm);
-  const [matkul, setMatkul] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("nama");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const { data: result = { data: [], total: 0 }, isLoading } = useMatakuliah({
+    q: search || undefined,
+    _sort: sortBy,
+    _order: sortOrder,
+    _page: page,
+    _limit: limit,
+  });
+
+  const matkul = result.data;
+  const totalPages = Math.ceil(result.total / limit);
+
+  const { mutate: store } = useStoreMatakuliah();
+  const { mutate: update } = useUpdateMatakuliah();
+  const { mutate: remove } = useDeleteMatakuliah();
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [form, setForm] = useState({ kode: "", nama: "", sks: "", dosen: "", semester: "" });
+  const [form, setForm] = useState(initialState);
 
-  const fetchMatakuliah = async () => {
-    try {
-      const res = await getAllMatakuliah();
-      setMatkul(res.data);
-    } catch { toastError("Gagal mengambil data matakuliah"); }
-    finally { setLoading(false); }
-  };
+  const resetPage = () => setPage(1);
 
-  useEffect(() => { fetchMatakuliah(); }, []); // eslint-disable-line react-hooks/set-state-in-effect
-
-  const openAdd = () => { setEditId(null); setForm({ kode: "", nama: "", sks: "", dosen: "", semester: "" }); setShowModal(true); };
+  const openAdd = () => { setEditId(null); setForm(initialState); setShowModal(true); };
 
   const openEdit = (m) => { setEditId(m.id); setForm({ kode: m.kode, nama: m.nama, sks: m.sks, dosen: m.dosen, semester: m.semester }); setShowModal(true); };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (editId) { await updateMatakuliah(editId, form); toastSuccess("Data matakuliah berhasil diupdate"); }
-      else { await storeMatakuliah(form); toastSuccess("Data matakuliah berhasil ditambahkan"); }
-      setShowModal(false);
-      fetchMatakuliah();
-    } catch { toastError("Gagal menyimpan data"); }
+    if (editId) {
+      update({ id: editId, data: form });
+    } else {
+      store(form);
+    }
+    setShowModal(false);
   };
 
   const handleDelete = (id, nama) => {
@@ -48,20 +60,40 @@ const Matakuliah = () => {
       confirmButtonText: "Ya, hapus", cancelButtonText: "Batal",
     }).then((res) => {
       if (res.isConfirmed) {
-        deleteMatakuliah(id).then(() => { toastSuccess("Matakuliah berhasil dihapus"); fetchMatakuliah(); }).catch(() => toastError("Gagal menghapus matakuliah"));
+        remove(id);
       }
     });
   };
 
-  if (loading) return <p className="text-center text-gray-500">Memuat data...</p>;
+  if (isLoading) return <p className="text-center text-gray-500">Memuat data...</p>;
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <Card>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-4">
           <Heading as="h2" spacing="mb-0">Data Matakuliah</Heading>
           {p("matakuliah.create") && <Button onClick={openAdd}>+ Tambah Matakuliah</Button>}
         </div>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          <input type="text" placeholder="Cari matakuliah..." value={search} onChange={(e) => { setSearch(e.target.value); resetPage(); }} className="flex-grow px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 text-sm" />
+          <select value={sortBy} onChange={(e) => { setSortBy(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="nama">Sort by Nama</option>
+            <option value="kode">Sort by Kode</option>
+            <option value="sks">Sort by SKS</option>
+            <option value="semester">Sort by Semester</option>
+          </select>
+          <select value={sortOrder} onChange={(e) => { setSortOrder(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="asc">Asc</option>
+            <option value="desc">Desc</option>
+          </select>
+          <select value={limit} onChange={(e) => { setLimit(Number(e.target.value)); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value={5}>5 / hal</option>
+            <option value={10}>10 / hal</option>
+            <option value={25}>25 / hal</option>
+          </select>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
@@ -78,7 +110,7 @@ const Matakuliah = () => {
             <tbody className="divide-y divide-gray-200">
               {matkul.map((m, i) => (
                 <tr key={m.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3">{i + 1}</td>
+                  <td className="px-4 py-3">{(page - 1) * limit + i + 1}</td>
                   <td className="px-4 py-3 font-mono text-xs">{m.kode}</td>
                   <td className="px-4 py-3 font-medium">{m.nama}</td>
                   <td className="px-4 py-3">{m.sks}</td>
@@ -94,6 +126,16 @@ const Matakuliah = () => {
           </table>
           {matkul.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data matakuliah</p>}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-sm text-gray-500">Halaman {page} dari {totalPages} ({result.total} data)</p>
+            <div className="flex gap-2">
+              <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Prev</button>
+              <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))} disabled={page === totalPages} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Next</button>
+            </div>
+          </div>
+        )}
       </Card>
 
       {showModal && (

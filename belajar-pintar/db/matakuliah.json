@@ -1,5 +1,9 @@
 [
   { "id": 1, "kode": "IF101", "nama": "Pemrograman Web", "sks": 3, "dosen": "Dr. Ahmad Fauzi, M.Kom", "semester": 4 },
   { "id": 2, "kode": "IF102", "nama": "Basis Data", "sks": 3, "dosen": "Dr. Siti Rahmawati, M.T", "semester": 4 },
-  { "id": 3, "kode": "IF103", "nama": "Struktur Data", "sks": 4, "dosen": "Budi Hartono, S.Kom, M.Kom", "semester": 4 }
+  { "id": 3, "kode": "IF103", "nama": "Struktur Data", "sks": 4, "dosen": "Budi Hartono, S.Kom, M.Kom", "semester": 4 },
+  { "id": 4, "kode": "IF201", "nama": "Jaringan Komputer", "sks": 3, "dosen": "Dr. Ahmad Fauzi, M.Kom", "semester": 2 },
+  { "id": 5, "kode": "IF202", "nama": "Sistem Operasi", "sks": 3, "dosen": "Dr. Siti Rahmawati, M.T", "semester": 2 },
+  { "id": 6, "kode": "IF301", "nama": "Kecerdasan Buatan", "sks": 3, "dosen": "Budi Hartono, S.Kom, M.Kom", "semester": 6 },
+  { "id": 7, "kode": "IF302", "nama": "Data Mining", "sks": 3, "dosen": "Dr. Ahmad Fauzi, M.Kom", "semester": 6 }
 ]

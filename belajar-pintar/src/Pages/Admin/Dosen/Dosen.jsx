@@ -1,43 +1,55 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
 import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { getAllDosen, storeDosen, updateDosen, deleteDosen } from "../../../Utils/Apis/DosenApi";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { useDosen, useStoreDosen, useUpdateDosen, useDeleteDosen } from "../../../utils/Hooks/useDosen";
+
+const initialState = { nidn: "", nama: "", email: "", telp: "", alamat: "" };
 
 const Dosen = () => {
   const { user } = useAuthStateContext();
   const p = (perm) => user?.permission?.includes(perm);
-  const [dosen, setDosen] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("nama");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const { data: result = { data: [], total: 0 }, isLoading } = useDosen({
+    q: search || undefined,
+    _sort: sortBy,
+    _order: sortOrder,
+    _page: page,
+    _limit: limit,
+  });
+
+  const dosen = result.data;
+  const totalPages = Math.ceil(result.total / limit);
+
+  const { mutate: store } = useStoreDosen();
+  const { mutate: update } = useUpdateDosen();
+  const { mutate: remove } = useDeleteDosen();
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState(null);
-  const [form, setForm] = useState({ nidn: "", nama: "", email: "", telp: "", alamat: "" });
+  const [form, setForm] = useState(initialState);
 
-  const fetchDosen = async () => {
-    try {
-      const res = await getAllDosen();
-      setDosen(res.data);
-    } catch { toastError("Gagal mengambil data dosen"); }
-    finally { setLoading(false); }
-  };
+  const resetPage = () => setPage(1);
 
-  useEffect(() => { fetchDosen(); }, []); // eslint-disable-line react-hooks/set-state-in-effect
-
-  const openAdd = () => { setEditId(null); setForm({ nidn: "", nama: "", email: "", telp: "", alamat: "" }); setShowModal(true); };
+  const openAdd = () => { setEditId(null); setForm(initialState); setShowModal(true); };
 
   const openEdit = (d) => { setEditId(d.id); setForm({ nidn: d.nidn, nama: d.nama, email: d.email, telp: d.telp, alamat: d.alamat }); setShowModal(true); };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      if (editId) { await updateDosen(editId, form); toastSuccess("Data dosen berhasil diupdate"); }
-      else { await storeDosen(form); toastSuccess("Data dosen berhasil ditambahkan"); }
-      setShowModal(false);
-      fetchDosen();
-    } catch { toastError("Gagal menyimpan data"); }
+    if (editId) {
+      update({ id: editId, data: form });
+    } else {
+      store(form);
+    }
+    setShowModal(false);
   };
 
   const handleDelete = (id, nama) => {
@@ -48,20 +60,39 @@ const Dosen = () => {
       confirmButtonText: "Ya, hapus", cancelButtonText: "Batal",
     }).then((res) => {
       if (res.isConfirmed) {
-        deleteDosen(id).then(() => { toastSuccess("Dosen berhasil dihapus"); fetchDosen(); }).catch(() => toastError("Gagal menghapus dosen"));
+        remove(id);
       }
     });
   };
 
-  if (loading) return <p className="text-center text-gray-500">Memuat data...</p>;
+  if (isLoading) return <p className="text-center text-gray-500">Memuat data...</p>;
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
       <Card>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-4">
           <Heading as="h2" spacing="mb-0">Data Dosen</Heading>
           {p("dosen.create") && <Button onClick={openAdd}>+ Tambah Dosen</Button>}
         </div>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          <input type="text" placeholder="Cari dosen..." value={search} onChange={(e) => { setSearch(e.target.value); resetPage(); }} className="flex-grow px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 text-sm" />
+          <select value={sortBy} onChange={(e) => { setSortBy(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="nama">Sort by Nama</option>
+            <option value="nidn">Sort by NIDN</option>
+            <option value="email">Sort by Email</option>
+          </select>
+          <select value={sortOrder} onChange={(e) => { setSortOrder(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="asc">Asc</option>
+            <option value="desc">Desc</option>
+          </select>
+          <select value={limit} onChange={(e) => { setLimit(Number(e.target.value)); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value={5}>5 / hal</option>
+            <option value={10}>10 / hal</option>
+            <option value={25}>25 / hal</option>
+          </select>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
@@ -77,7 +108,7 @@ const Dosen = () => {
             <tbody className="divide-y divide-gray-200">
               {dosen.map((d, i) => (
                 <tr key={d.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3">{i + 1}</td>
+                  <td className="px-4 py-3">{(page - 1) * limit + i + 1}</td>
                   <td className="px-4 py-3 font-mono text-xs">{d.nidn}</td>
                   <td className="px-4 py-3 font-medium">{d.nama}</td>
                   <td className="px-4 py-3 text-gray-500">{d.email}</td>
@@ -92,6 +123,16 @@ const Dosen = () => {
           </table>
           {dosen.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data dosen</p>}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-sm text-gray-500">Halaman {page} dari {totalPages} ({result.total} data)</p>
+            <div className="flex gap-2">
+              <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Prev</button>
+              <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))} disabled={page === totalPages} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Next</button>
+            </div>
+          </div>
+        )}
       </Card>
 
       {showModal && (

@@ -1,23 +1,34 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  BarChart, Bar, PieChart, Pie, Cell,
+  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from "recharts";
 import Card from "../Components/Card";
 import Button from "../Components/Button";
+import Heading from "../Components/Heading";
 import { modulist } from "../../../utils/dummyData";
+import { useChartData } from "../../../utils/Hooks/useChart";
+
+const COLORS = ["#8884d8", "#82ca9d", "#ffc658", "#ff8042"];
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const [progress, setProgress] = useState(0);
   const userName = JSON.parse(localStorage.getItem("user"))?.name || "Mahasiswa";
-
-  useEffect(() => {
+  const progress = useMemo(() => {
     const saved = localStorage.getItem("materiProgress");
     const data = saved ? JSON.parse(saved) : modulist;
     const selesai = data.filter((m) => m.selesai).length;
-    setProgress(Math.round((selesai / data.length) * 100));
+    return Math.round((selesai / data.length) * 100);
   }, []);
 
+  const { data: chartData = {}, isLoading } = useChartData();
+  const { matkulPerSemester = [], userByRole = [] } = chartData;
+
+
+
   return (
-    <div className="max-w-4xl mx-auto space-y-8">
+    <div className="max-w-6xl mx-auto space-y-6">
       <Card className="text-center py-10">
         <h2 className="text-3xl font-bold text-gray-800 mb-2">Selamat Datang, {userName}! 👋</h2>
         <p className="text-gray-500 mb-8">Ayo lanjutkan belajarmu hari ini.</p>
@@ -27,22 +38,71 @@ const Dashboard = () => {
         </div>
         <Button onClick={() => navigate("/admin/kelas")} className="px-8 py-3 text-lg">Lanjutkan Belajar</Button>
       </Card>
-      <Card>
-        <h3 className="text-xl font-semibold text-gray-800 mb-4">Daftar Modul</h3>
-        <div className="space-y-3">
-          {modulist.map((m, i) => {
-            const saved = localStorage.getItem("materiProgress");
-            const data = saved ? JSON.parse(saved) : modulist;
-            const isDone = data.find((d) => d.id === m.id)?.selesai;
-            return (
-              <div key={m.id} className="flex items-center justify-between p-4 rounded-lg border ${isDone ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}">
-                <div className="flex items-center gap-3"><span className="text-lg">${isDone ? '✅' : '⏳'}</span><div><p className="font-medium">{m.judul}</p><p className="text-sm text-gray-500">{m.deskripsi}</p></div></div>
-                <span className="text-xs font-medium px-2 py-1 rounded ${isDone ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'}">${isDone ? 'Selesai' : 'Belum'}</span>
-              </div>
-            );
-          })}
+
+      {isLoading ? (
+        <p className="text-center text-gray-400 py-8">Memuat data dashboard...</p>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <Card>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">📊</span>
+              <Heading as="h3" spacing="mb-0">Matakuliah per Semester</Heading>
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <BarChart data={matkulPerSemester}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="semester" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="count" fill="#8884d8" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </Card>
+
+          <Card>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">👥</span>
+              <Heading as="h3" spacing="mb-0">User by Role</Heading>
+            </div>
+            <ResponsiveContainer width="100%" height={280}>
+              <PieChart>
+                <Pie data={userByRole} dataKey="count" nameKey="role" cx="50%" cy="50%" outerRadius={90} label={({ role, count }) => `${role}: ${count}`}>
+                  {userByRole.map((_, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+                <Legend />
+              </PieChart>
+            </ResponsiveContainer>
+          </Card>
+
+          <Card>
+            <div className="flex items-center gap-3 mb-4">
+              <span className="text-3xl">📖</span>
+              <Heading as="h3" spacing="mb-0">Ringkasan Materi</Heading>
+            </div>
+            {(() => {
+              const saved = localStorage.getItem("materiProgress");
+              const data = saved ? JSON.parse(saved) : modulist;
+              const selesai = data.filter((m) => m.selesai).length;
+              const total = data.length;
+              const pct = total > 0 ? Math.round((selesai / total) * 100) : 0;
+              return (
+                <div className="flex flex-col justify-center h-[280px] space-y-4">
+                  <div className="text-center">
+                    <span className="text-5xl font-bold text-blue-600">{pct}%</span>
+                    <p className="text-gray-500 mt-1">Progress Belajar</p>
+                  </div>
+                  <div className="w-full bg-gray-200 rounded-full h-4"><div className="bg-blue-500 h-4 rounded-full transition-all" style={{ width: `${pct}%` }}></div></div>
+                  <p className="text-sm text-gray-400 text-center">{selesai} dari {total} materi selesai</p>
+                  <Button onClick={() => navigate("/admin/kelas")} className="w-full" size="sm">Lihat Detail</Button>
+                </div>
+              );
+            })()}
+          </Card>
         </div>
-      </Card>
+      )}
     </div>
   );
 };

@@ -1,39 +1,63 @@
 [
   {
     "id": 1,
-    "name": "Admin 1",
+    "name": "Admin",
     "email": "admin@mail.com",
     "password": "admin123",
     "role": "admin",
+    "max_sks": 0,
     "permission": [
       "dashboard.page",
       "kelas.page",
-      "dosen.page",
-      "dosen.read",
-      "dosen.create",
-      "dosen.update",
-      "dosen.delete",
-      "matakuliah.page",
-      "matakuliah.read",
-      "matakuliah.create",
-      "matakuliah.update",
-      "matakuliah.delete",
-      "user.page",
-      "user.read",
-      "user.create",
-      "user.update",
-      "user.delete"
+      "dosen.page", "dosen.read", "dosen.create", "dosen.update", "dosen.delete",
+      "matakuliah.page", "matakuliah.read", "matakuliah.create", "matakuliah.update", "matakuliah.delete",
+      "user.page", "user.read", "user.create", "user.update", "user.delete",
+      "kelola-kelas.page", "kelola-kelas.read", "kelola-kelas.create", "kelola-kelas.update", "kelola-kelas.delete"
     ]
   },
   {
     "id": 2,
-    "name": "Mahasiswa 1",
-    "email": "mahasiswa@mail.com",
-    "password": "mahasiswa123",
+    "name": "dio",
+    "email": "dio@mail.com",
+    "password": "dio123",
     "role": "mahasiswa",
-    "permission": [
-      "dashboard.page",
-      "kelas.page"
-    ]
+    "max_sks": 24,
+    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+  },
+  {
+    "id": 3,
+    "name": "andi",
+    "email": "andi@mail.com",
+    "password": "andi123",
+    "role": "mahasiswa",
+    "max_sks": 24,
+    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+  },
+  {
+    "id": 4,
+    "name": "nando",
+    "email": "nando@mail.com",
+    "password": "nando123",
+    "role": "mahasiswa",
+    "max_sks": 24,
+    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+  },
+  {
+    "id": 5,
+    "name": "arsel",
+    "email": "arsel@mail.com",
+    "password": "arsel123",
+    "role": "mahasiswa",
+    "max_sks": 24,
+    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+  },
+  {
+    "id": 6,
+    "name": "ricksy",
+    "email": "ricksy@mail.com",
+    "password": "ricksy123",
+    "role": "mahasiswa",
+    "max_sks": 24,
+    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
   }
 ]

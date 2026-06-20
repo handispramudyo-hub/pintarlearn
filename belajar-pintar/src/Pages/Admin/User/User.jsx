@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
 import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { getAllUsers, updateUser, deleteUser } from "../../../Utils/Apis/UserApi";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { useUsers, useUpdateUser, useDeleteUser } from "../../../utils/Hooks/useUser";
 
 const permissionGroups = {
   Dashboard: ["dashboard.page"],
@@ -25,21 +24,31 @@ const rolePresets = {
 const User = () => {
   const { user: currentUser } = useAuthStateContext();
   const p = (perm) => currentUser?.permission?.includes(perm);
-  const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+  const [search, setSearch] = useState("");
+  const [sortBy, setSortBy] = useState("name");
+  const [sortOrder, setSortOrder] = useState("asc");
+
+  const { data: result = { data: [], total: 0 }, isLoading } = useUsers({
+    q: search || undefined,
+    _sort: sortBy,
+    _order: sortOrder,
+    _page: page,
+    _limit: limit,
+  });
+
+  const users = result.data;
+  const totalPages = Math.ceil(result.total / limit);
+
+  const { mutate: update } = useUpdateUser();
+  const { mutate: remove } = useDeleteUser();
   const [showModal, setShowModal] = useState(false);
   const [editId, setEditId] = useState(null);
   const [form, setForm] = useState({ name: "", email: "", password: "", role: "mahasiswa", permission: [] });
 
-  const fetchUsers = async () => {
-    try {
-      const res = await getAllUsers();
-      setUsers(res.data);
-    } catch { toastError("Gagal mengambil data user"); }
-    finally { setLoading(false); }
-  };
-
-  useEffect(() => { fetchUsers(); }, []); // eslint-disable-line react-hooks/set-state-in-effect
+  const resetPage = () => setPage(1);
 
   const openEdit = (u) => {
     setEditId(u.id);
@@ -70,16 +79,12 @@ const User = () => {
     setForm((prev) => ({ ...prev, permission: [...(rolePresets[prev.role] || [])] }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      const data = { ...form };
-      if (!data.password) delete data.password;
-      await updateUser(editId, data);
-      toastSuccess("Data user berhasil diupdate");
-      setShowModal(false);
-      fetchUsers();
-    } catch { toastError("Gagal menyimpan data"); }
+    const data = { ...form };
+    if (!data.password) delete data.password;
+    update({ id: editId, data });
+    setShowModal(false);
   };
 
   const handleDelete = (id, name) => {
@@ -90,19 +95,38 @@ const User = () => {
       confirmButtonText: "Ya, hapus", cancelButtonText: "Batal",
     }).then((res) => {
       if (res.isConfirmed) {
-        deleteUser(id).then(() => { toastSuccess("User berhasil dihapus"); fetchUsers(); }).catch(() => toastError("Gagal menghapus user"));
+        remove(id);
       }
     });
   };
 
-  if (loading) return <p className="text-center text-gray-500">Memuat data...</p>;
+  if (isLoading) return <p className="text-center text-gray-500">Memuat data...</p>;
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
       <Card>
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex justify-between items-center mb-4">
           <Heading as="h2" spacing="mb-0">Manajemen User</Heading>
         </div>
+
+        <div className="flex flex-wrap gap-2 mb-4">
+          <input type="text" placeholder="Cari user..." value={search} onChange={(e) => { setSearch(e.target.value); resetPage(); }} className="flex-grow px-3 py-1.5 border rounded-lg focus:outline-none focus:ring focus:ring-blue-300 text-sm" />
+          <select value={sortBy} onChange={(e) => { setSortBy(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="name">Sort by Nama</option>
+            <option value="email">Sort by Email</option>
+            <option value="role">Sort by Role</option>
+          </select>
+          <select value={sortOrder} onChange={(e) => { setSortOrder(e.target.value); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value="asc">Asc</option>
+            <option value="desc">Desc</option>
+          </select>
+          <select value={limit} onChange={(e) => { setLimit(Number(e.target.value)); resetPage(); }} className="px-3 py-1.5 border rounded-lg text-sm focus:outline-none focus:ring focus:ring-blue-300">
+            <option value={5}>5 / hal</option>
+            <option value={10}>10 / hal</option>
+            <option value={25}>25 / hal</option>
+          </select>
+        </div>
+
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
@@ -118,7 +142,7 @@ const User = () => {
             <tbody className="divide-y divide-gray-200">
               {users.map((u, i) => (
                 <tr key={u.id} className="hover:bg-gray-50">
-                  <td className="px-4 py-3">{i + 1}</td>
+                  <td className="px-4 py-3">{(page - 1) * limit + i + 1}</td>
                   <td className="px-4 py-3 font-medium">{u.name}</td>
                   <td className="px-4 py-3 text-gray-500">{u.email}</td>
                   <td className="px-4 py-3">
@@ -146,6 +170,16 @@ const User = () => {
           </table>
           {users.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data user</p>}
         </div>
+
+        {totalPages > 1 && (
+          <div className="flex justify-between items-center mt-4">
+            <p className="text-sm text-gray-500">Halaman {page} dari {totalPages} ({result.total} data)</p>
+            <div className="flex gap-2">
+              <button onClick={() => setPage((p) => Math.max(p - 1, 1))} disabled={page === 1} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Prev</button>
+              <button onClick={() => setPage((p) => Math.min(p + 1, totalPages))} disabled={page === totalPages} className="px-3 py-1 bg-gray-200 rounded text-sm disabled:opacity-50 cursor-pointer">Next</button>
+            </div>
+          </div>
+        )}
       </Card>
 
       {showModal && (
