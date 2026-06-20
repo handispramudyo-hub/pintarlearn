@@ -1,0 +1,12 @@
+{
+  "name": "belajar-pintar-api",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "build": "node ../belajar-pintar/merge-json.cjs"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  }
+}
