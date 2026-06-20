@@ -14,7 +14,7 @@ if (isLocal) {
     const segments = url.pathname.split("/").filter(Boolean);
     const resource = segments[0];
     const id = segments[1];
-    const params = Object.fromEntries(url.searchParams.entries());
+    const params = { ...Object.fromEntries(url.searchParams.entries()), ...(config.params || {}) };
 
     if (id) params.id = id;
 
