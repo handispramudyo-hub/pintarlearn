@@ -5,7 +5,6 @@ import Label from "../Components/Label";
 import Button from "../Components/Button";
 import Link from "../Components/Link";
 import Card from "../Components/Card";
-import Heading from "../Components/Heading";
 import Form from "../Components/Form";
 import { login } from "../../../utils/Apis/AuthApi";
 import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
@@ -35,25 +34,42 @@ const Login = () => {
   };
 
   return (
-    <Card>
-      <Heading as="h2">Belajar Pintar</Heading>
-      <p className="text-center text-gray-500 mb-6 -mt-4">Platform Pembelajaran Digital</p>
+    <Card className="overflow-hidden">
+      <div className="bg-blue-600 text-white text-center py-6 -mx-5 -mt-5 md:-mx-8 md:-mt-8 mb-6">
+        <div className="text-4xl mb-2">📚</div>
+        <h1 className="text-2xl font-bold">Belajar Pintar</h1>
+        <p className="text-blue-100 text-sm mt-1">Platform Pembelajaran Digital</p>
+      </div>
       <Form onSubmit={handleSubmit}>
         <div>
           <Label htmlFor="email">Email</Label>
-          <Input type="email" name="email" placeholder="admin@mail.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          <div className="relative mt-1">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">📧</span>
+            <Input type="email" name="email" placeholder="admin@mail.com" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className="pl-10" />
+          </div>
         </div>
         <div>
           <Label htmlFor="password">Password</Label>
-          <Input type="password" name="password" placeholder="Masukkan password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
+          <div className="relative mt-1">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔒</span>
+            <Input type="password" name="password" placeholder="Masukkan password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} className="pl-10" />
+          </div>
         </div>
-        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-2">
-          <label className="flex items-center cursor-pointer"><input type="checkbox" className="mr-2 rounded" /><span className="text-sm text-gray-600">Ingat saya</span></label>
+        <div className="flex items-center justify-between text-sm">
+          <label className="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" defaultChecked className="rounded text-blue-600" />
+            <span className="text-gray-600">Ingat saya</span>
+          </label>
           <Link href="#">Lupa password?</Link>
         </div>
-        <Button type="submit" className="w-full" disabled={loading}>{loading ? "Memproses..." : "Login"}</Button>
+        <Button type="submit" className="w-full py-2.5" disabled={loading}>
+          {loading ? "Memproses..." : "Masuk"}
+        </Button>
       </Form>
-      <p className="text-center text-sm text-gray-500 mt-4">Belum punya akun? <Link href="/register">Daftar</Link></p>
+      <p className="text-center text-sm text-gray-500 mt-6">
+        Belum punya akun?{" "}
+        <Link href="/register">Daftar sekarang</Link>
+      </p>
     </Card>
   );
 };
