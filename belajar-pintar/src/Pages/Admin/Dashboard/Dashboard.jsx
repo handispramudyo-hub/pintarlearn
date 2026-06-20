@@ -29,10 +29,10 @@ const Dashboard = () => {
 
   return (
     <div className="max-w-6xl mx-auto space-y-6">
-      <Card className="text-center py-10">
-        <h2 className="text-3xl font-bold text-gray-800 mb-2">Selamat Datang, {userName}! 👋</h2>
-        <p className="text-gray-500 mb-8">Ayo lanjutkan belajarmu hari ini.</p>
-        <div className="max-w-md mx-auto mb-8">
+      <Card className="text-center py-6 md:py-10">
+        <h2 className="text-xl md:text-3xl font-bold text-gray-800 mb-2">Selamat Datang, {userName}! 👋</h2>
+        <p className="text-gray-500 mb-6 md:mb-8">Ayo lanjutkan belajarmu hari ini.</p>
+        <div className="max-w-md mx-auto mb-6 md:mb-8">
           <div className="flex justify-between text-sm font-medium text-gray-600 mb-2"><span>Progress Belajar</span><span>{progress}%</span></div>
           <div className="w-full bg-gray-200 rounded-full h-4"><div className="bg-blue-600 h-4 rounded-full transition-all duration-500" style={{ width: `${progress}%` }}></div></div>
         </div>

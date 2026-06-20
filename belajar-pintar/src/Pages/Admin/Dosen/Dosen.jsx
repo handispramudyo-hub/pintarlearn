@@ -93,7 +93,7 @@ const Dosen = () => {
           </select>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
               <tr>
@@ -121,6 +121,28 @@ const Dosen = () => {
               ))}
             </tbody>
           </table>
+          {dosen.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data dosen</p>}
+        </div>
+
+        <div className="md:hidden space-y-3">
+          {dosen.map((d, i) => (
+            <div key={d.id} className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+              <div className="flex justify-between items-start">
+                <div className="font-medium text-sm">{d.nama}</div>
+                <span className="text-xs text-gray-400">#{(page - 1) * limit + i + 1}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-xs text-gray-500">
+                <span className="font-mono">NIDN: {d.nidn}</span>
+                <span>📧 {d.email}</span>
+                <span>📞 {d.telp}</span>
+              </div>
+              {d.alamat && <p className="text-xs text-gray-400">📍 {d.alamat}</p>}
+              <div className="flex gap-2 pt-1">
+                {p("dosen.update") && <Button size="sm" variant="info" onClick={() => openEdit(d)}>Edit</Button>}
+                {p("dosen.delete") && <Button size="sm" variant="danger" onClick={() => handleDelete(d.id, d.nama)}>Hapus</Button>}
+              </div>
+            </div>
+          ))}
           {dosen.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data dosen</p>}
         </div>
 

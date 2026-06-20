@@ -160,7 +160,7 @@ const KelasManagement = () => {
               </select>
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm text-left">
                 <thead className="bg-gray-50 text-gray-600">
                   <tr>
@@ -221,6 +221,49 @@ const KelasManagement = () => {
                   })}
                 </tbody>
               </table>
+              {kelas.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada kelas</p>}
+            </div>
+
+            <div className="md:hidden space-y-3">
+              {kelas.map((k, i) => {
+                const mk = getMatkulById(k.matakuliah_id);
+                const d = getDosenById(k.dosen_id);
+                const mhs = (k.mahasiswa_ids || []).map((id) => allMahasiswa.find((u) => u.id === id)).filter(Boolean);
+                const mhsCount = mhs.length;
+                return (
+                  <div key={k.id} className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <div className="font-medium text-sm">{mk?.nama || "—"}</div>
+                        <div className="text-xs text-gray-400">{mk?.kode || ""} — {mk?.sks || "?"} SKS</div>
+                      </div>
+                      <span className="text-xs text-gray-400">#{(page - 1) * limit + i + 1}</span>
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-medium">Dosen:</span> {d?.nama || "—"}
+                      <span className="text-gray-400 ml-2">({calcDosenKelasCount(d?.id)} kelas)</span>
+                    </div>
+                    <div className="text-xs">
+                      <span className="font-medium">Mahasiswa:</span> {mhsCount}/{MAX_MHS_PER_KELAS}
+                      {mhsCount > MAX_MHS_PER_KELAS && <span className="text-red-600 ml-1">(Over!)</span>}
+                    </div>
+                    {mhs.length > 0 && (
+                      <div className="text-xs text-gray-500 space-y-1 max-h-24 overflow-y-auto">
+                        {mhs.map((m) => (
+                          <div key={m.id} className="flex items-center justify-between">
+                            <span>{m.name}</span>
+                            <SKSBar current={calcMahasiswaSks(m.id)} max={MAX_SKS_PER_SEMESTER} />
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                    <div className="flex gap-2 pt-1">
+                      {p("kelola-kelas.update") && <Button size="sm" variant="info" onClick={() => openEdit(k)}>Edit</Button>}
+                      {p("kelola-kelas.delete") && <Button size="sm" variant="danger" onClick={() => handleDelete(k.id, mk?.nama || "kelas")}>Hapus</Button>}
+                    </div>
+                  </div>
+                );
+              })}
               {kelas.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada kelas</p>}
             </div>
 

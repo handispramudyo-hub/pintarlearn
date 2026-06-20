@@ -94,7 +94,7 @@ const Matakuliah = () => {
           </select>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
               <tr>
@@ -124,6 +124,28 @@ const Matakuliah = () => {
               ))}
             </tbody>
           </table>
+          {matkul.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data matakuliah</p>}
+        </div>
+
+        <div className="md:hidden space-y-3">
+          {matkul.map((m, i) => (
+            <div key={m.id} className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+              <div className="flex justify-between items-start">
+                <div className="font-medium text-sm">{m.nama}</div>
+                <span className="text-xs text-gray-400">#{(page - 1) * limit + i + 1}</span>
+              </div>
+              <div className="grid grid-cols-2 gap-1 text-xs text-gray-500">
+                <span className="font-mono">{m.kode}</span>
+                <span>{m.sks} SKS</span>
+                <span>👨‍🏫 {m.dosen}</span>
+                <span>📚 Semester {m.semester}</span>
+              </div>
+              <div className="flex gap-2 pt-1">
+                {p("matakuliah.update") && <Button size="sm" variant="info" onClick={() => openEdit(m)}>Edit</Button>}
+                {p("matakuliah.delete") && <Button size="sm" variant="danger" onClick={() => handleDelete(m.id, m.nama)}>Hapus</Button>}
+              </div>
+            </div>
+          ))}
           {matkul.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data matakuliah</p>}
         </div>
 

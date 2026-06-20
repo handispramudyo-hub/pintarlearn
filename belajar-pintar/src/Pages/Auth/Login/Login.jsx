@@ -47,7 +47,7 @@ const Login = () => {
           <Label htmlFor="password">Password</Label>
           <Input type="password" name="password" placeholder="Masukkan password" value={form.password} onChange={(e) => setForm({ ...form, password: e.target.value })} />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col xs:flex-row justify-between items-start xs:items-center gap-2">
           <label className="flex items-center cursor-pointer"><input type="checkbox" className="mr-2 rounded" /><span className="text-sm text-gray-600">Ingat saya</span></label>
           <Link href="#">Lupa password?</Link>
         </div>

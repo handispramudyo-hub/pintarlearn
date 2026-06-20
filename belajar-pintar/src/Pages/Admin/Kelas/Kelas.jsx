@@ -75,9 +75,9 @@ const Kelas = () => {
                     <h3 className="font-semibold text-blue-800">{mk.nama}</h3>
                     <p className="text-xs text-gray-500">{mk.kode} | {mk.sks} SKS | Semester {mk.semester}</p>
                   </div>
-                  <div className="flex items-center gap-3">
-                    <span className="text-xs font-medium px-2 py-1 rounded bg-white text-blue-600">{mkDone}/{modules.length} ({mkPct}%)</span>
-                    <span className="text-gray-500 transition-transform">{isActive ? "▲" : "▼"}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs font-medium px-2 py-1 rounded bg-white text-blue-600 whitespace-nowrap">{mkDone}/{modules.length}</span>
+                    <span className="text-gray-500 transition-transform text-xs">{isActive ? "▲" : "▼"}</span>
                   </div>
                 </button>
 

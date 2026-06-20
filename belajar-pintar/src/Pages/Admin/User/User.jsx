@@ -127,7 +127,7 @@ const User = () => {
           </select>
         </div>
 
-        <div className="overflow-x-auto">
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-sm text-left">
             <thead className="bg-gray-50 text-gray-600">
               <tr>
@@ -168,6 +168,31 @@ const User = () => {
               ))}
             </tbody>
           </table>
+          {users.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data user</p>}
+        </div>
+
+        <div className="md:hidden space-y-3">
+          {users.map((u, i) => (
+            <div key={u.id} className="border rounded-lg p-4 bg-white shadow-sm space-y-2">
+              <div className="flex justify-between items-start">
+                <div className="font-medium text-sm">{u.name}</div>
+                <span className={`px-2 py-0.5 rounded-full text-xs font-medium ${u.role === "admin" ? "bg-purple-100 text-purple-700" : "bg-green-100 text-green-700"}`}>{u.role}</span>
+              </div>
+              <p className="text-xs text-gray-500">📧 {u.email}</p>
+              <div className="flex flex-wrap gap-1">
+                {u.permission.slice(0, 3).map((perm) => (
+                  <span key={perm} className="px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded text-xs">{perm}</span>
+                ))}
+                {u.permission.length > 3 && (
+                  <span className="px-1.5 py-0.5 bg-gray-100 text-gray-500 rounded text-xs">+{u.permission.length - 3}</span>
+                )}
+              </div>
+              <div className="flex gap-2 pt-1">
+                {p("user.update") && <Button size="sm" variant="info" onClick={() => openEdit(u)}>Edit</Button>}
+                {p("user.delete") && u.id !== currentUser?.id && <Button size="sm" variant="danger" onClick={() => handleDelete(u.id, u.name)}>Hapus</Button>}
+              </div>
+            </div>
+          ))}
           {users.length === 0 && <p className="text-center text-gray-400 py-8">Belum ada data user</p>}
         </div>
 
