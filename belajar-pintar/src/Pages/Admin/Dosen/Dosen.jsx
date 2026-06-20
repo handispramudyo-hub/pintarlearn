@@ -3,7 +3,7 @@ import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
 import { useDosen, useStoreDosen, useUpdateDosen, useDeleteDosen } from "../../../utils/Hooks/useDosen";
 
 const initialState = { nidn: "", nama: "", email: "", telp: "", alamat: "" };

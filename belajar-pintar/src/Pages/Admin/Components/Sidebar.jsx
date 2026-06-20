@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
 const Sidebar = () => {
   const { user } = useAuthStateContext();
   const p = (perm) => user?.permission?.includes(perm);

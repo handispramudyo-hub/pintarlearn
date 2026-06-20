@@ -4,8 +4,8 @@ import Heading from "../Components/Heading";
 import MateriAccordion from "./MateriAccordion";
 import TanyaDosenModal from "./TanyaDosenModal";
 import { modulist } from "../../../utils/dummyData";
-import { getAllMatakuliah } from "../../../Utils/Apis/MatakuliahApi";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { getAllMatakuliah } from "../../../utils/Apis/MatakuliahApi";
+import { toastSuccess, toastError } from "../../../utils/Helpers/ToastHelpers";
 
 const Kelas = () => {
   const [materi, setMateri] = useState([]);

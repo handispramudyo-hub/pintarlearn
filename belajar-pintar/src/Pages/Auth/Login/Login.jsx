@@ -7,9 +7,9 @@ import Link from "../Components/Link";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Form from "../Components/Form";
-import { login } from "../../../Utils/Apis/AuthApi";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { login } from "../../../utils/Apis/AuthApi";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
+import { toastSuccess, toastError } from "../../../utils/Helpers/ToastHelpers";
 
 const Login = () => {
   const navigate = useNavigate();

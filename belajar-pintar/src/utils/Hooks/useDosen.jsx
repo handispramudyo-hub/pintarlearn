@@ -5,7 +5,7 @@ import {
   updateDosen,
   deleteDosen,
 } from "../Apis/DosenApi";
-import { toastSuccess, toastError } from "../../Utils/Helpers/ToastHelpers";
+import { toastSuccess, toastError } from "../../utils/Helpers/ToastHelpers";
 
 export const useDosen = (query = {}) =>
   useQuery({

@@ -4,7 +4,7 @@ import {
   updateUser,
   deleteUser,
 } from "../Apis/UserApi";
-import { toastSuccess, toastError } from "../../Utils/Helpers/ToastHelpers";
+import { toastSuccess, toastError } from "../../utils/Helpers/ToastHelpers";
 
 export const useUsers = (query = {}) =>
   useQuery({

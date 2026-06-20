@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { getAllKelas, storeKelas, updateKelas, deleteKelas } from "../Apis/KelasApi";
-import { toastSuccess, toastError } from "../../Utils/Helpers/ToastHelpers";
+import { toastSuccess, toastError } from "../../utils/Helpers/ToastHelpers";
 
 export const useKelas = (query = {}) =>
   useQuery({

@@ -3,11 +3,11 @@ import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { useKelas, useStoreKelas, useUpdateKelas, useDeleteKelas } from "../../../Utils/Hooks/useKelasManagement";
-import { useDosen } from "../../../Utils/Hooks/useDosen";
-import { useMatakuliah } from "../../../Utils/Hooks/useMatakuliah";
-import { useUsers } from "../../../Utils/Hooks/useUser";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
+import { useKelas, useStoreKelas, useUpdateKelas, useDeleteKelas } from "../../../utils/Hooks/useKelasManagement";
+import { useDosen } from "../../../utils/Hooks/useDosen";
+import { useMatakuliah } from "../../../utils/Hooks/useMatakuliah";
+import { useUsers } from "../../../utils/Hooks/useUser";
 
 const initialState = { matakuliah_id: "", dosen_id: "", mahasiswa_ids: [] };
 const MAX_MHS_PER_KELAS = 30;

@@ -7,8 +7,8 @@ import Link from "../Components/Link";
 import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Form from "../Components/Form";
-import { register } from "../../../Utils/Apis/AuthApi";
-import { toastSuccess, toastError } from "../../../Utils/Helpers/ToastHelpers";
+import { register } from "../../../utils/Apis/AuthApi";
+import { toastSuccess, toastError } from "../../../utils/Helpers/ToastHelpers";
 
 const Register = () => {
   const navigate = useNavigate();

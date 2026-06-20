@@ -3,7 +3,7 @@ import Card from "../Components/Card";
 import Heading from "../Components/Heading";
 import Button from "../Components/Button";
 import Swal from "sweetalert2";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
 import { useMatakuliah, useStoreMatakuliah, useUpdateMatakuliah, useDeleteMatakuliah } from "../../../utils/Hooks/useMatakuliah";
 
 const initialState = { kode: "", nama: "", sks: "", dosen: "", semester: "" };

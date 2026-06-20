@@ -5,7 +5,7 @@ import {
   updateMatakuliah,
   deleteMatakuliah,
 } from "../Apis/MatakuliahApi";
-import { toastSuccess, toastError } from "../../Utils/Helpers/ToastHelpers";
+import { toastSuccess, toastError } from "../../utils/Helpers/ToastHelpers";
 
 export const useMatakuliah = (query = {}) =>
   useQuery({

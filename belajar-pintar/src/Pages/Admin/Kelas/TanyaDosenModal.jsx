@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Button from "../Components/Button";
-import { toastSuccess } from "../../../Utils/Helpers/ToastHelpers";
+import { toastSuccess } from "../../../utils/Helpers/ToastHelpers";
 
 const TanyaDosenModal = ({ isOpen, materi, onClose }) => {
   const [pertanyaan, setPertanyaan] = useState("");

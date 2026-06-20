@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import AxiosInstance from "../../Utils/AxiosInstance";
+import AxiosInstance from "../../utils/AxiosInstance";
 
 export const useChartData = () =>
   useQuery({

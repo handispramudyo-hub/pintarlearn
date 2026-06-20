@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { useAuthStateContext } from "../../../Utils/Contexts/AuthContext";
-import { confirmLogout } from "../../../Utils/Helpers/SwalHelpers";
+import { useAuthStateContext } from "../../../utils/Contexts/AuthContext";
+import { confirmLogout } from "../../../utils/Helpers/SwalHelpers";
 const Header = () => {
   const { user, setUser } = useAuthStateContext();
   const [showMenu, setShowMenu] = useState(false);
