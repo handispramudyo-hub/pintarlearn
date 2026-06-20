@@ -9,4 +9,4 @@
   status = 200
 
 [context.production.environment]
-  VITE_API_URL = "https://belajar-pintar-api.onrender.com"
+  VITE_USE_LOCAL_API = "true"
