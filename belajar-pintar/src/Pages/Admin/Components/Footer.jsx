@@ -1,2 +1,2 @@
-const Footer = () => { return <footer className="bg-white text-center py-3 md:py-4 shadow-inner px-4"><p className="text-xs md:text-sm text-gray-600">&copy; 2025 Belajar Pintar. UTS Pemrograman Sisi Klien.</p></footer>; };
+const Footer = () => { return <footer className="bg-white text-center py-3 md:py-4 shadow-inner px-4"><p className="text-xs md:text-sm text-gray-600">&copy; 2025 Belajar Pintar. Handis Pramudio Pemrograman Sisi Klien.</p></footer>; };
 export default Footer;
