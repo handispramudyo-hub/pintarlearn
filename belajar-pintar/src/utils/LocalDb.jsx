@@ -2,6 +2,14 @@ import dosenData from "../../db/dosen.json";
 import matakuliahData from "../../db/matakuliah.json";
 import userData from "../../db/user.json";
 import kelasData from "../../db/kelas.json";
+import quizData from "../../db/quiz.json";
+import quizAttemptsData from "../../db/quiz_attempts.json";
+import forumCategoriesData from "../../db/forum_categories.json";
+import forumThreadsData from "../../db/forum_threads.json";
+import forumRepliesData from "../../db/forum_replies.json";
+import achievementsData from "../../db/achievements.json";
+import userAchievementsData from "../../db/user_achievements.json";
+import learningAnalyticsData from "../../db/learning_analytics.json";
 
 const DB_KEY = "belajar_pintar_db";
 let db = null;
@@ -17,6 +25,14 @@ function loadDb() {
       matakuliah: matakuliahData,
       user: userData,
       kelas: kelasData,
+      quiz: quizData,
+      quiz_attempts: quizAttemptsData,
+      forum_categories: forumCategoriesData,
+      forum_threads: forumThreadsData,
+      forum_replies: forumRepliesData,
+      achievements: achievementsData,
+      user_achievements: userAchievementsData,
+      learning_analytics: learningAnalyticsData,
     };
     saveDb();
   }

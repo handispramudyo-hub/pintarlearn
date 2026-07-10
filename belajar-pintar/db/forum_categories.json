@@ -1,0 +1,8 @@
+[
+  { "id": 1, "nama": "Pemrograman Web", "deskripsi": "Diskusi tentang mata kuliah Pemrograman Web", "icon": "🌐", "thread_count": 3 },
+  { "id": 2, "nama": "Basis Data", "deskripsi": "Diskusi tentang mata kuliah Basis Data", "icon": "🗄️", "thread_count": 2 },
+  { "id": 3, "nama": "Struktur Data", "deskripsi": "Diskusi tentang mata kuliah Struktur Data", "icon": "📊", "thread_count": 2 },
+  { "id": 4, "nama": "Jaringan Komputer", "deskripsi": "Diskusi tentang mata kuliah Jaringan Komputer", "icon": "🌍", "thread_count": 1 },
+  { "id": 5, "nama": "Sistem Operasi", "deskripsi": "Diskusi tentang mata kuliah Sistem Operasi", "icon": "💻", "thread_count": 1 },
+  { "id": 6, "nama": "Umum", "deskripsi": "Diskusi umum seputar perkuliahan", "icon": "💬", "thread_count": 2 }
+]

@@ -1,0 +1,118 @@
+[
+  {
+    "id": 1,
+    "user_id": 2,
+    "quiz_id": 1,
+    "score": 80,
+    "total_soal": 10,
+    "jawaban_benar": 8,
+    "jawaban_salah": 2,
+    "waktu_pengerjaan": 720,
+    "answers": [
+      { "question_id": "q1", "jawaban": "HyperText Markup Language", "benar": true },
+      { "question_id": "q2", "jawaban": "<a>", "benar": true },
+      { "question_id": "q3", "jawaban": "Benar", "benar": true },
+      { "question_id": "q4", "jawaban": "color", "benar": true },
+      { "question_id": "q5", "jawaban": "Salah", "benar": true },
+      { "question_id": "q6", "jawaban": "Mengatur tata letak elemen secara fleksibel", "benar": true },
+      { "question_id": "q7", "jawaban": "src", "benar": true },
+      { "question_id": "q8", "jawaban": "Salah", "benar": false },
+      { "question_id": "q9", "jawaban": "rem", "benar": false },
+      { "question_id": "q10", "jawaban": "Class bisa digunakan berkali-kali sedangkan id unik untuk satu elemen", "benar": true }
+    ],
+    "tanggal": "2026-07-01T10:30:00.000Z",
+    "lulus": true
+  },
+  {
+    "id": 2,
+    "user_id": 2,
+    "quiz_id": 1,
+    "score": 90,
+    "total_soal": 10,
+    "jawaban_benar": 9,
+    "jawaban_salah": 1,
+    "waktu_pengerjaan": 650,
+    "answers": [
+      { "question_id": "q1", "jawaban": "HyperText Markup Language", "benar": true },
+      { "question_id": "q2", "jawaban": "<a>", "benar": true },
+      { "question_id": "q3", "jawaban": "Benar", "benar": true },
+      { "question_id": "q4", "jawaban": "color", "benar": true },
+      { "question_id": "q5", "jawaban": "Salah", "benar": true },
+      { "question_id": "q6", "jawaban": "Mengatur tata letak elemen secara fleksibel", "benar": true },
+      { "question_id": "q7", "jawaban": "src", "benar": true },
+      { "question_id": "q8", "jawaban": "Benar", "benar": true },
+      { "question_id": "q9", "jawaban": "em", "benar": true },
+      { "question_id": "q10", "jawaban": "Class digunakan untuk banyak elemen, id untuk satu elemen spesifik", "benar": true }
+    ],
+    "tanggal": "2026-07-03T14:00:00.000Z",
+    "lulus": true
+  },
+  {
+    "id": 3,
+    "user_id": 3,
+    "quiz_id": 2,
+    "score": 62.5,
+    "total_soal": 8,
+    "jawaban_benar": 5,
+    "jawaban_salah": 3,
+    "waktu_pengerjaan": 500,
+    "answers": [
+      { "question_id": "q1", "jawaban": "SELECT", "benar": true },
+      { "question_id": "q2", "jawaban": "Menyaring data berdasarkan kondisi", "benar": true },
+      { "question_id": "q3", "jawaban": "Benar", "benar": true },
+      { "question_id": "q4", "jawaban": "Structured Query Language", "benar": true },
+      { "question_id": "q5", "jawaban": "DELETE TABLE", "benar": false },
+      { "question_id": "q6", "jawaban": "Benar", "benar": true },
+      { "question_id": "q7", "jawaban": "Mengurutkan data berdasarkan kolom", "benar": false },
+      { "question_id": "q8", "jawaban": "SELECT * FROM mahasiswa WHERE usia > 20", "benar": true }
+    ],
+    "tanggal": "2026-07-02T09:15:00.000Z",
+    "lulus": false
+  },
+  {
+    "id": 4,
+    "user_id": 2,
+    "quiz_id": 2,
+    "score": 75,
+    "total_soal": 8,
+    "jawaban_benar": 6,
+    "jawaban_salah": 2,
+    "waktu_pengerjaan": 580,
+    "answers": [
+      { "question_id": "q1", "jawaban": "SELECT", "benar": true },
+      { "question_id": "q2", "jawaban": "Menyaring data berdasarkan kondisi", "benar": true },
+      { "question_id": "q3", "jawaban": "Benar", "benar": true },
+      { "question_id": "q4", "jawaban": "Structured Query Language", "benar": true },
+      { "question_id": "q5", "jawaban": "DROP TABLE", "benar": true },
+      { "question_id": "q6", "jawaban": "Salah", "benar": false },
+      { "question_id": "q7", "jawaban": "Mengelompokkan data berdasarkan kolom tertentu", "benar": true },
+      { "question_id": "q8", "jawaban": "SELECT * FROM mahasiswa WHERE age > 20", "benar": false }
+    ],
+    "tanggal": "2026-07-04T11:00:00.000Z",
+    "lulus": true
+  },
+  {
+    "id": 5,
+    "user_id": 5,
+    "quiz_id": 1,
+    "score": 60,
+    "total_soal": 10,
+    "jawaban_benar": 6,
+    "jawaban_salah": 4,
+    "waktu_pengerjaan": 800,
+    "answers": [
+      { "question_id": "q1", "jawaban": "HyperText Markup Language", "benar": true },
+      { "question_id": "q2", "jawaban": "<link>", "benar": false },
+      { "question_id": "q3", "jawaban": "Benar", "benar": true },
+      { "question_id": "q4", "jawaban": "font-color", "benar": false },
+      { "question_id": "q5", "jawaban": "Salah", "benar": true },
+      { "question_id": "q6", "jawaban": "Mengatur tata letak elemen secara fleksibel", "benar": true },
+      { "question_id": "q7", "jawaban": "src", "benar": true },
+      { "question_id": "q8", "jawaban": "Benar", "benar": true },
+      { "question_id": "q9", "jawaban": "px", "benar": false },
+      { "question_id": "q10", "jawaban": "Tidak tahu", "benar": false }
+    ],
+    "tanggal": "2026-07-05T08:00:00.000Z",
+    "lulus": false
+  }
+]

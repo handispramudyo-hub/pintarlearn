@@ -14,7 +14,7 @@ const localAdapter = async (config) => {
 
   let data = config.data;
   if (typeof data === "string") {
-    try { data = JSON.parse(data); } catch {}
+    try { data = JSON.parse(data); } catch { /* ignore */ }
   }
 
   let result;

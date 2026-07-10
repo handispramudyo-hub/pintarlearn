@@ -62,7 +62,6 @@ const Kelas = () => {
           {matakuliah.map((mk) => {
             const modules = getModulesByMatkul(mk.id);
             const mkDone = modules.filter((m) => m.selesai).length;
-            const mkPct = modules.length > 0 ? Math.round((mkDone / modules.length) * 100) : 0;
             const isActive = activeMatkul === mk.id;
 
             return (

@@ -1,0 +1,22 @@
+[
+  { "id": 1, "nama": "Pemula", "deskripsi": "Selesaikan 1 modul pertama", "icon": "🌱", "tipe": "modul", "target": 1, "rarity": "common" },
+  { "id": 2, "nama": "Rajin Belajar", "deskripsi": "Selesaikan 5 modul", "icon": "📚", "tipe": "modul", "target": 5, "rarity": "common" },
+  { "id": 3, "nama": "Sarjana Muda", "deskripsi": "Selesaikan 10 modul", "icon": "🎓", "tipe": "modul", "target": 10, "rarity": "uncommon" },
+  { "id": 4, "nama": "Master Modul", "deskripsi": "Selesaikan semua 21 modul", "icon": "👑", "tipe": "modul", "target": 21, "rarity": "legendary" },
+  { "id": 5, "nama": "Quiz Pertama", "deskripsi": "Selesaikan quiz pertama", "icon": "📝", "tipe": "quiz", "target": 1, "rarity": "common" },
+  { "id": 6, "nama": "Si Perfeksionis", "deskripsi": "Dapat nilai 100 dalam quiz", "icon": "💯", "tipe": "quiz_score", "target": 100, "rarity": "epic" },
+  { "id": 7, "nama": "Pengumpul Nilai", "deskripsi": "Selesaikan 5 quiz", "icon": "🏆", "tipe": "quiz", "target": 5, "rarity": "uncommon" },
+  { "id": 8, "nama": "Aktivis Forum", "deskripsi": "Buat 3 thread di forum", "icon": "💬", "tipe": "thread", "target": 3, "rarity": "uncommon" },
+  { "id": 9, "nama": "Berbagi Ilmu", "deskripsi": "Beri 10 balasan di forum", "icon": "🤝", "tipe": "reply", "target": 10, "rarity": "uncommon" },
+  { "id": 10, "nama": "Bintang Forum", "deskripsi": "Dapat 50 upvotes total", "icon": "⭐", "tipe": "upvote", "target": 50, "rarity": "epic" },
+  { "id": 11, "nama": "Streak 3 Hari", "deskripsi": "Belajar 3 hari berturut-turut", "icon": "🔥", "tipe": "streak", "target": 3, "rarity": "common" },
+  { "id": 12, "nama": "Streak 7 Hari", "deskripsi": "Belajar 7 hari berturut-turut", "icon": "🔥", "tipe": "streak", "target": 7, "rarity": "uncommon" },
+  { "id": 13, "nama": "Streak 30 Hari", "deskripsi": "Belajar 30 hari berturut-turut", "icon": "💪", "tipe": "streak", "target": 30, "rarity": "legendary" },
+  { "id": 14, "nama": "Poin 100", "deskripsi": "Kumpulkan 100 poin pencapaian", "icon": "⭐", "tipe": "poin", "target": 100, "rarity": "common" },
+  { "id": 15, "nama": "Poin 500", "deskripsi": "Kumpulkan 500 poin pencapaian", "icon": "🌟", "tipe": "poin", "target": 500, "rarity": "epic" },
+  { "id": 16, "nama": "Pembaca Setia", "deskripsi": "Selesaikan semua modul dalam 1 mata kuliah", "icon": "📖", "tipe": "matkul_complete", "target": 1, "rarity": "uncommon" },
+  { "id": 17, "nama": "Full Stack", "deskripsi": "Selesaikan semua modul Pemrograman Web", "icon": "🌐", "tipe": "matkul_specific", "target": 1, "rarity": "epic", "metadata": { "matakuliah_id": 1 } },
+  { "id": 18, "nama": "Ahli Database", "deskripsi": "Selesaikan semua modul Basis Data", "icon": "🗄️", "tipe": "matkul_specific", "target": 1, "rarity": "epic", "metadata": { "matakuliah_id": 2 } },
+  { "id": 19, "nama": "Kontributor", "deskripsi": "Dapatkan 1 jawaban terbaik", "icon": "🏅", "tipe": "best_answer", "target": 1, "rarity": "uncommon" },
+  { "id": 20, "nama": "Jenius", "deskripsi": "Dapat nilai di atas 90 dalam 3 quiz berturut-turut", "icon": "🧠", "tipe": "quiz_streak", "target": 3, "rarity": "legendary" }
+]

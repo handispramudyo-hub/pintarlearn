@@ -18,6 +18,10 @@ const Sidebar = ({ isOpen, onClose }) => {
           {p("matakuliah.page") && <NavLink to="/admin/matakuliah" onClick={onClose} className={linkClass}><span className="text-lg">📚</span><span>Matakuliah</span></NavLink>}
           {p("kelola-kelas.page") && <NavLink to="/admin/kelola-kelas" onClick={onClose} className={linkClass}><span className="text-lg">🏫</span><span>Kelola Kelas</span></NavLink>}
           {p("user.page") && <NavLink to="/admin/user" onClick={onClose} className={linkClass}><span className="text-lg">👥</span><span>User</span></NavLink>}
+          {p("quiz.page") && <NavLink to="/admin/quiz" onClick={onClose} className={linkClass}><span className="text-lg">📝</span><span>Quiz</span></NavLink>}
+          {p("forum.page") && <NavLink to="/admin/forum" onClick={onClose} className={linkClass}><span className="text-lg">💬</span><span>Forum</span></NavLink>}
+          {p("pencapaian.page") && <NavLink to="/admin/pencapaian" onClick={onClose} className={linkClass}><span className="text-lg">🏆</span><span>Pencapaian</span></NavLink>}
+          {p("instruktur.page") && <NavLink to="/admin/instruktur" onClick={onClose} className={linkClass}><span className="text-lg">📊</span><span>Instruktur</span></NavLink>}
         </nav>
       </aside>
     </>

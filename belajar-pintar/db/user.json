@@ -9,10 +9,40 @@
     "permission": [
       "dashboard.page",
       "kelas.page",
-      "dosen.page", "dosen.read", "dosen.create", "dosen.update", "dosen.delete",
-      "matakuliah.page", "matakuliah.read", "matakuliah.create", "matakuliah.update", "matakuliah.delete",
-      "user.page", "user.read", "user.create", "user.update", "user.delete",
-      "kelola-kelas.page", "kelola-kelas.read", "kelola-kelas.create", "kelola-kelas.update", "kelola-kelas.delete"
+      "dosen.page",
+      "dosen.read",
+      "dosen.create",
+      "dosen.update",
+      "dosen.delete",
+      "matakuliah.page",
+      "matakuliah.read",
+      "matakuliah.create",
+      "matakuliah.update",
+      "matakuliah.delete",
+      "user.page",
+      "user.read",
+      "user.create",
+      "user.update",
+      "user.delete",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "kelola-kelas.create",
+      "kelola-kelas.update",
+      "kelola-kelas.delete",
+      "quiz.page",
+      "quiz.read",
+      "quiz.create",
+      "quiz.update",
+      "quiz.delete",
+      "forum.page",
+      "forum.read",
+      "forum.create",
+      "forum.update",
+      "forum.delete",
+      "pencapaian.page",
+      "pencapaian.read",
+      "instruktur.page",
+      "instruktur.read"
     ]
   },
   {
@@ -22,7 +52,19 @@
     "password": "dio123",
     "role": "mahasiswa",
     "max_sks": 24,
-    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "quiz.page",
+      "quiz.read",
+      "forum.page",
+      "forum.read",
+      "forum.create",
+      "pencapaian.page",
+      "pencapaian.read"
+    ]
   },
   {
     "id": 3,
@@ -31,7 +73,19 @@
     "password": "andi123",
     "role": "mahasiswa",
     "max_sks": 24,
-    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "quiz.page",
+      "quiz.read",
+      "forum.page",
+      "forum.read",
+      "forum.create",
+      "pencapaian.page",
+      "pencapaian.read"
+    ]
   },
   {
     "id": 4,
@@ -40,7 +94,19 @@
     "password": "nando123",
     "role": "mahasiswa",
     "max_sks": 24,
-    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "quiz.page",
+      "quiz.read",
+      "forum.page",
+      "forum.read",
+      "forum.create",
+      "pencapaian.page",
+      "pencapaian.read"
+    ]
   },
   {
     "id": 5,
@@ -49,7 +115,14 @@
     "password": "arsel123",
     "role": "mahasiswa",
     "max_sks": 24,
-    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "quiz.page",
+      "quiz.read"
+    ]
   },
   {
     "id": 6,
@@ -58,6 +131,18 @@
     "password": "ricksy123",
     "role": "mahasiswa",
     "max_sks": 24,
-    "permission": ["dashboard.page", "kelas.page", "kelola-kelas.page", "kelola-kelas.read"]
+    "permission": [
+      "dashboard.page",
+      "kelas.page",
+      "kelola-kelas.page",
+      "kelola-kelas.read",
+      "quiz.page",
+      "quiz.read",
+      "forum.page",
+      "forum.read",
+      "forum.create",
+      "pencapaian.page",
+      "pencapaian.read"
+    ]
   }
 ]

@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "matakuliah_id": 1,
+    "judul": "Quiz HTML & CSS Dasar",
+    "deskripsi": "Uji pemahaman Anda tentang HTML dan CSS dasar",
+    "waktu": 30,
+    "nilai_lulus": 70,
+    "published": true,
+    "questions": [
+      { "id": "q1", "type": "pilihan_ganda", "soal": "Apa kepanjangan dari HTML?", "jawaban": "HyperText Markup Language", "pilihan": ["HyperText Markup Language", "HighText Machine Language", "HyperTool Multi Language", "HomeTool Markup Language"] },
+      { "id": "q2", "type": "pilihan_ganda", "soal": "Tag HTML mana yang digunakan untuk membuat hyperlink?", "jawaban": "<a>", "pilihan": ["<link>", "<a>", "<href>", "<url>"] },
+      { "id": "q3", "type": "benar_salah", "soal": "CSS digunakan untuk mengatur tampilan halaman web.", "jawaban": "Benar", "pilihan": ["Benar", "Salah"] },
+      { "id": "q4", "type": "pilihan_ganda", "soal": "Properti CSS mana yang mengubah warna teks?", "jawaban": "color", "pilihan": ["text-color", "font-color", "color", "text-style"] },
+      { "id": "q5", "type": "benar_salah", "soal": "Tag <div> adalah elemen inline dalam HTML.", "jawaban": "Salah", "pilihan": ["Benar", "Salah"] },
+      { "id": "q6", "type": "pilihan_ganda", "soal": "Apa fungsi dari CSS flexbox?", "jawaban": "Mengatur tata letak elemen secara fleksibel", "pilihan": ["Mengatur animasi elemen", "Mengatur tata letak elemen secara fleksibel", "Mengubah warna background", "Menambah efek bayangan"] },
+      { "id": "q7", "type": "pilihan_ganda", "soal": "Attribute HTML mana yang digunakan untuk menentukan URL gambar pada tag <img>?", "jawaban": "src", "pilihan": ["href", "src", "link", "url"] },
+      { "id": "q8", "type": "benar_salah", "soal": "JavaScript dapat digunakan untuk memanipulasi DOM.", "jawaban": "Benar", "pilihan": ["Benar", "Salah"] },
+      { "id": "q9", "type": "pilihan_ganda", "soal": "Unit CSS mana yang bersifat relatif terhadap ukuran font elemen induk?", "jawaban": "em", "pilihan": ["px", "em", "rem", "vh"] },
+      { "id": "q10", "type": "essay", "soal": "Jelaskan perbedaan antara class dan id dalam CSS!", "jawaban": "" }
+    ]
+  },
+  {
+    "id": 2,
+    "matakuliah_id": 2,
+    "judul": "Quiz SQL Dasar",
+    "deskripsi": "Evaluasi pemahaman tentang query SQL dasar",
+    "waktu": 20,
+    "nilai_lulus": 65,
+    "published": true,
+    "questions": [
+      { "id": "q1", "type": "pilihan_ganda", "soal": "Perintah SQL mana yang digunakan untuk mengambil data?", "jawaban": "SELECT", "pilihan": ["SELECT", "GET", "FETCH", "RETRIEVE"] },
+      { "id": "q2", "type": "pilihan_ganda", "soal": "Apa fungsi dari klausa WHERE dalam SQL?", "jawaban": "Menyaring data berdasarkan kondisi", "pilihan": ["Mengurutkan data", "Menyaring data berdasarkan kondisi", "Menggabungkan tabel", "Menghitung jumlah data"] },
+      { "id": "q3", "type": "benar_salah", "soal": "Perintah INSERT digunakan untuk menambah data baru ke tabel.", "jawaban": "Benar", "pilihan": ["Benar", "Salah"] },
+      { "id": "q4", "type": "pilihan_ganda", "soal": "Apa kepanjangan dari SQL?", "jawaban": "Structured Query Language", "pilihan": ["Structured Query Language", "Simple Query Language", "Standard Query Language", "Syntax Query Language"] },
+      { "id": "q5", "type": "pilihan_ganda", "soal": "Perintah mana yang digunakan untuk menghapus tabel?", "jawaban": "DROP TABLE", "pilihan": ["DELETE TABLE", "DROP TABLE", "REMOVE TABLE", "ERASE TABLE"] },
+      { "id": "q6", "type": "benar_salah", "soal": "JOIN digunakan untuk menggabungkan data dari dua tabel atau lebih.", "jawaban": "Benar", "pilihan": ["Benar", "Salah"] },
+      { "id": "q7", "type": "pilihan_ganda", "soal": "Apa fungsi dari GROUP BY?", "jawaban": "Mengelompokkan data berdasarkan kolom tertentu", "pilihan": ["Mengurutkan data berdasarkan kolom", "Mengelompokkan data berdasarkan kolom tertentu", "Menyaring data berdasarkan kondisi", "Menggabungkan beberapa tabel"] },
+      { "id": "q8", "type": "essay", "soal": "Buatlah query SQL untuk menampilkan semua data dari tabel 'mahasiswa' yang berusia di atas 20 tahun!", "jawaban": "" }
+    ]
+  },
+  {
+    "id": 3,
+    "matakuliah_id": 3,
+    "judul": "Quiz Struktur Data",
+    "deskripsi": "Uji pemahaman tentang struktur data dasar",
+    "waktu": 25,
+    "nilai_lulus": 70,
+    "published": false,
+    "questions": [
+      { "id": "q1", "type": "pilihan_ganda", "soal": "Struktur data mana yang menggunakan prinsip LIFO?", "jawaban": "Stack", "pilihan": ["Queue", "Stack", "Linked List", "Array"] },
+      { "id": "q2", "type": "pilihan_ganda", "soal": "Apa kompleksitas waktu akses elemen pada array?", "jawaban": "O(1)", "pilihan": ["O(n)", "O(log n)", "O(n^2)", "O(1)"] },
+      { "id": "q3", "type": "benar_salah", "soal": "Queue menggunakan prinsip FIFO (First In First Out).", "jawaban": "Benar", "pilihan": ["Benar", "Salah"] },
+      { "id": "q4", "type": "pilihan_ganda", "soal": "Dalam binary tree, jumlah child maksimal setiap node adalah?", "jawaban": "2", "pilihan": ["1", "2", "3", "Tidak terbatas"] },
+      { "id": "q5", "type": "essay", "soal": "Jelaskan perbedaan antara array dan linked list!", "jawaban": "" }
+    ]
+  }
+]
